@@ -46,10 +46,16 @@ def calculate_mean(weather_data):
 
     Args:
         weather_data: a list of numbers.
+        
     Returns:
         A float representing the mean value.
     """
-    pass
+    temperature = [float(number) for number in weather_data]
+    
+    total = sum(temperature)
+    count = len(temperature)
+    mean = total / count
+    return mean
 
 
 def load_data_from_csv(csv_file):
