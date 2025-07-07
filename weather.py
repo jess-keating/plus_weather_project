@@ -76,8 +76,23 @@ def find_min(weather_data):
         weather_data: A list of numbers.
     Returns:
         The minimum value and it's position in the list. (In case of multiple matches, return the index of the *last* example in the list.)
+        #retrun value and index is enumerate? return (min_value, index)? return the min value use "min()" so min(list)?
     """
-    pass
+    if not weather_data:
+        return ()
+
+    # Ensure all values are numbers (convert strings to float)
+    weather_data = [float(x) for x in weather_data]
+
+    min_value = min(weather_data)
+    min_index = None
+
+    for index, value in enumerate(weather_data):
+        if value == min_value:
+            min_index = index
+
+    return (min_value, min_index)
+
 
 
 def find_max(weather_data):
@@ -88,7 +103,20 @@ def find_max(weather_data):
     Returns:
         The maximum value and it's position in the list. (In case of multiple matches, return the index of the *last* example in the list.)
     """
-    pass
+    if not weather_data:
+        return ()
+
+    # Ensure all values are numbers (convert strings to float)
+    weather_data = [float(x) for x in weather_data]
+
+    max_value = max(weather_data)
+    max_index = None
+
+    for index, value in enumerate(weather_data):
+        if value == max_value:
+            max_index = index
+
+    return (max_value, max_index)
 
 
 def generate_summary(weather_data):
