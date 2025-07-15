@@ -73,7 +73,6 @@ def load_data_from_csv(csv_file):
         next(reader)  # Skip header row
         for row in reader:
             if row:
-                # Convert numeric columns to int, keep date as string
                 converted_row = [row[0], int(row[1]), int(row[2])]
                 data.append(converted_row)
     return data
@@ -130,14 +129,6 @@ def find_max(weather_data):
     return (max_value, max_index)
 
 
-def generate_summary(weather_data):
-    """Outputs a summary for the given weather data.
-
-    Args:
-        weather_data: A list of lists, where each sublist represents a day of weather data.
-    Returns:
-        A string containing the summary information.
-    """
 def generate_summary(weather_data):
     """Outputs a summary for the given weather data.
 
