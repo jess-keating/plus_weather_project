@@ -27,6 +27,10 @@ def convert_date(iso_string):
     date_object = datetime.strptime(iso_string, "%Y-%m-%dT%H:%M:%S%z")
     return date_object.strftime("%A %d %B %Y")  # e.g. Tuesday 06 July 2021
 
+# Jordans results below
+#   date_object = datetime.fromisoformat(iso_string)
+#   return date_object.strftime("%A %d %B %Y")  # e.g. Tuesday 06 July 2021
+
 
 def convert_f_to_c(temp_in_fahrenheit):
     """Converts a temperature from Fahrenheit to Celcius.
@@ -40,6 +44,10 @@ def convert_f_to_c(temp_in_fahrenheit):
     temp_in_celsius = (temp_in_fahrenheit - 32) * 5 / 9
     temp_in_celsius = round(temp_in_celsius, 1)
     return temp_in_celsius
+
+# Jordans results below
+# celsius = (float(temp_in_fahrenheit) - 32) * 5 / 9
+# return round(celsius, 1)
 
 
 def calculate_mean(weather_data):
@@ -58,6 +66,11 @@ def calculate_mean(weather_data):
     mean = total / count
     return mean
 
+# Jordans results below
+# weather_data_float = []
+# for item in weather_data:
+#     weather_data_float.append(float(item))
+# return sum(weather_data_float) / len(weather_data_float)
 
 def load_data_from_csv(csv_file):
     """Reads a csv file and stores the data in a list.
@@ -77,6 +90,18 @@ def load_data_from_csv(csv_file):
                 data.append(converted_row)
     return data
     
+# Jordans results below
+# with open(csv_file, mode='r') as file:
+# csv_reader = csv.reader(file)
+# next(csv_reader) # Skip the header row
+
+# data = []
+# for row in csv_reader:
+#     if row != []:
+#         data.append([row[0], float(row[1]), float(row[2])])
+# return data
+
+# Find_last_index additional function that Jordan added/created. This feeds into the min and max below. 
 
 
 def find_min(weather_data):
@@ -103,6 +128,16 @@ def find_min(weather_data):
 
     return (min_value, min_index)
 
+# Jordans results below
+#if not weather_data:
+#    return () # early return / input validation
+
+#weather_data_float = []
+# for item in weather_data:
+#     weather_data_float.append(float(item))
+#
+#min_value = min(weather_data_float)
+# return find_last_index(min_value, weather_data_float)
 
 
 def find_max(weather_data):
@@ -127,6 +162,17 @@ def find_max(weather_data):
             max_index = index
 
     return (max_value, max_index)
+
+# Jordans results below
+# if not weather_data:
+#     return ()
+#
+#weather_data_float = []
+# for item in weather_data:
+#     weather_data_float.append(float(item))
+#
+#max_value = max(weather_data_float)
+# return find_last_index(max_value, weather_data_float)
 
 
 def generate_summary(weather_data):
@@ -165,7 +211,45 @@ def generate_summary(weather_data):
 
     return summary
 
-
+#Jordans result below
+# if not weather_data:
+# return ''
+#
+# dates = []
+# min_temps_f = []
+# max_temps_f = []
+#
+#for day_date in weather_data:
+#    dates.append(day_date[0])
+#    min_temps_f.append(day_date[1])
+#    max_temps_f.append(day_date[2])
+#
+# Find overal min and max
+# min_value_f, min_index_f = find_min(min_temps_f)
+# max_value_f, max_index_f = find_max(max_temps_f)
+#
+#Find average temps
+# avg_min_temp_f = calculate_mean(min_temps_f)
+# avg_max_temp_f = calculate_mean(max_temps_f)
+#
+#Convert temp to Celsius
+# min_temp_c = convert_f_to_c(avg_min_temp_f)
+# max_temp_c = convert_f_to_c(avg_max_temp_f)
+# avg_min_temp_c = convert_f_to_c(avg_min_temp_f)
+# avg_max_temp_c = convert_f_to_c(avg_max_temp_f)
+#
+#Format the dates
+#min_date = convert_date(dates[min_index_f])
+#max_date = convert_date(dates[max_index_f])
+#
+#Create Summary
+#summary = f"{len(weather_data)} Day Overview\n"
+#summary += f"  The lowest temperature will be {format_temperature(min_temp_c)}, and will occur on {min_date}.\n"
+#summary += f"  The highest temperature will be {format_temperature(max_temp_c)}, and will occur on {max_date}.\n"
+#summary += f"  The average low this week is {format_temperature(round(avg_min_temp_c, 1))}.\n"
+#summary += f"  The average high this week is {format_temperature(round(avg_max_temp_c, 1))}.\n"
+# 
+# return summary
 
 def generate_daily_summary(weather_data):
     """Outputs a daily summary for the given weather data.
@@ -190,3 +274,20 @@ def generate_daily_summary(weather_data):
         summary_lines.append(daily_summary)
 
     return "".join(summary_lines)
+
+#Jordans result below
+#if not weather_data:
+# return ""
+#
+# daily_summary = ""
+#
+# for day in weather_data:
+#     date = convert_date(day_data[0])
+#     min_temp_c = convert_f_to_c(day_data[1])
+#     max_temp_c = convert_f_to_c(day_data[2])
+#
+#     daily_summary +=     f"---- {date} ----\n"
+#     daily_summary +=     f"  Minimum Temperature: {format_temperature(min_temp_c)}\n"
+#     daily_summary +=     f"  Maximum Temperature: {format_temperature(max_temp_c)}\n\n"
+#
+# return daily_summary
